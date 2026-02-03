@@ -3,8 +3,16 @@
 namespace StringUtils{
 
 std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
-    // Replace code here
-    return "";
+    ssize_t len = str.size();
+
+    if(start < 0) start += len;
+    if(end <= 0) end += len;
+
+    start = std::max<ssize_t>(0, std::min(start, len));
+    end   = std::max<ssize_t>(0, std::min(end, len));
+
+    if(start >= end) return "";
+    return str.substr(start, end - start);
 }
 
 std::string Capitalize(const std::string &str) noexcept{
